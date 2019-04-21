@@ -1,0 +1,32 @@
+$black: #000;
+$muted: #BCBCBC;
+$gameCellColor: #F1CC64;
+$buttonColor: #039382;
+$bgContentColor: #F4F4F4;
+$winnerColor: #D7AF89;
+$endGameTextColor: rgba(147, 3, 20, 0.75);
+$bgGameCardColor1: #7D7D7D;
+$bgGameCardColor2: #BEBEBE;
+$bgGameCardColor3: #EAEAEA;
+
+$colors: (
+  "black": $black,
+  "muted": $muted
+);
+
+$theme-colors: (
+    "black": $black,
+    "muted": $muted,
+    "gameCellColor": $gameCellColor,
+    "buttonColor": $buttonColor,
+    "bgGameCardColor1": $bgGameCardColor1,
+    "bgGameCardColor2": $bgGameCardColor2,
+    "bgGameCardColor3": $bgGameCardColor3,
+    "winnerColor": $winnerColor,
+    "endGameTextColor": $endGameTextColor,
+);
+
+// $spacer: 1rem !default;
+$spacers: (
+    'fixed': 24px
+);

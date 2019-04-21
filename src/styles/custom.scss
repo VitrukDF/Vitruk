@@ -1,0 +1,175 @@
+html,body {
+  height: 100%;
+}
+// html{
+//     border:3px dashed rgba(58, 224, 58, 0.658);
+// }
+body{
+   background-color: $bgContentColor;
+  //  font-size: 2.5vmin;
+   // border:3px solid green;
+}
+#root{
+   height:100%;
+   display:flex;
+   flex-direction:column;
+   // border:3px dotted rgb(250, 6, 250);
+}
+
+
+
+.customClearBorder{
+ width:100%;
+ // outline: $gameCellBorder solid $bgContentColor;
+ // outline-offset: -$gameCellBorder;
+ // box-shadow: inset 3px -3px rgb(28, 228, 9);
+ // z-index:99999;
+}
+.customRow{
+ display:flex;
+ flex-shrink: 0;
+ justify-content: center;
+ width:100%;
+}
+.customRow:last-of-type{
+ box-shadow: inset 3px -3px $bgContentColor;//under
+}
+.customColumn, .customColumnMuted{
+ display:flex;
+ flex-basis:20vh;
+ max-width: 200px;
+ // min-width: 50px;
+ position: relative;
+}
+.customColumn:last-of-type{
+ border-bottom:$gameCellBorder solid $gameCellColor;
+}
+.customColumn:not(:last-of-type){
+ border-bottom:$gameCellBorder solid $gameCellColor;
+ border-right:$gameCellBorder solid $gameCellColor;
+}
+.customColumnMuted:last-of-type{
+ border-bottom:$gameCellBorder solid $muted;
+}
+.customColumnMuted:not(:last-of-type){
+ border-bottom:$gameCellBorder solid $muted;
+ border-right:$gameCellBorder solid $muted;
+}
+.customColumn::before, .customColumnMuted::before{
+ content: "";
+ display:block;
+ padding-top:100%;
+}
+.gameCell{
+//  padding: 1vmin;
+ position:  absolute;
+ top: 0;
+ left: 0;
+ bottom: 0;
+ right: 0;
+}
+
+@mixin flexboxGridMixin($columnNumber,$spacingPercent){
+  $contentPercent: 100%-$spacingPercent;
+  $sideMargine: $spacingPercent/(($columnNumber)-1);
+  
+  >*{
+    width: $contentPercent/$columnNumber;
+    // background-color: rgba(209, 250, 196, 0.233);
+    margin-right: $sideMargine;
+    margin-bottom: $sideMargine;
+    position: relative;
+    >*{
+      position:  absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+    }
+  }
+  >*::before{
+    content: "";
+    display:block;
+    padding-top:100%;
+  }
+  >*:nth-of-type(#{$columnNumber}n){
+    margin-right:0;
+    // background-color: rgba(248, 98, 106, 0.233);
+  }
+}
+
+.gameCardList{
+  $spacing: 5%;
+  @media (max-width: 576px){
+    @include flexboxGridMixin(4,$spacing);
+  }
+  @media (min-width: 576px) and (max-width: 767.98px){
+    @include flexboxGridMixin(5,$spacing);
+  }
+  @media (min-width: 768px) and (max-width: 991.98px){
+    @include flexboxGridMixin(6,$spacing);
+  }
+  @media (min-width: 992px) and (max-width: 1199.98px){
+    @include flexboxGridMixin(7,$spacing);
+  }
+  @media (min-width: 1200px) and (max-width: 1599.98px){
+    @include flexboxGridMixin(8,$spacing);
+  }
+  @media (min-width: 1600px) and (max-width: 1919.98px){
+    @include flexboxGridMixin(9,$spacing);
+  }
+  @media (min-width: 1920px){
+    @include flexboxGridMixin(10,$spacing);
+  }
+}
+
+.gameCard{
+  display:flex;
+  flex-direction: column;
+}
+// .gameCard>*{
+//   flex:0 0 auto;
+// }
+.gameCard span{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+.gameCard img{
+  width: 2.5vmin;
+  height: 2.5vmin;
+}
+.gameCard>div:first-of-type{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: hidden;
+  font-size:2vmin;
+  >*{
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    display:flex;
+    flex:0 0 50%;
+    justify-content: space-between;
+  }
+}
+.gameCard>div:last-of-type{
+  font-size:2vmin;
+  margin-left: auto;
+}
+
+.endGame{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  font-size: 8vmin;
+  font-weight: 600;
+  color: $endGameTextColor;
+  // color: rgba(147, 3, 20, 0.75);
+  pointer-events: none;
+}

@@ -1,0 +1,18 @@
+{
+  "main.css": "./static/css/main.25d19998.chunk.css",
+  "main.js": "./static/js/main.077c6826.chunk.js",
+  "main.js.map": "./static/js/main.077c6826.chunk.js.map",
+  "runtime~main.js": "./static/js/runtime~main.9eb600ee.js",
+  "runtime~main.js.map": "./static/js/runtime~main.9eb600ee.js.map",
+  "static/js/2.065ab0c3.chunk.js": "./static/js/2.065ab0c3.chunk.js",
+  "static/js/2.065ab0c3.chunk.js.map": "./static/js/2.065ab0c3.chunk.js.map",
+  "index.html": "./index.html",
+  "precache-manifest.91a5bf8aa1f3ccc7d1b56be9c0d7468f.js": "./precache-manifest.91a5bf8aa1f3ccc7d1b56be9c0d7468f.js",
+  "service-worker.js": "./service-worker.js",
+  "static/css/main.25d19998.chunk.css.map": "./static/css/main.25d19998.chunk.css.map",
+  "static/media/cross.svg": "./static/media/cross.57c94804.svg",
+  "static/media/nought.svg": "./static/media/nought.fac8de41.svg",
+  "static/media/noughtMuted.svg": "./static/media/noughtMuted.f2ca6631.svg",
+  "static/media/pluss.svg": "./static/media/pluss.7fef4e83.svg",
+  "static/media/tick.svg": "./static/media/tick.f498b4c6.svg"
+}
