@@ -4,19 +4,19 @@ import nought from '../../svg/nought.svg';
 import noughtMuted from '../../svg/noughtMuted.svg';
 
 class PlayersNames extends Component{
-    constructor(props){
-        super(props);
-    }
 
     render(){
-
-
 
         let signPlayer2=nought;
         let border="border-bottom border-2 border-black";
         if (this.props.userName!==this.props.player1&&this.props.userName!==this.props.player2){
             signPlayer2=noughtMuted;
             border="border-bottom border-2 border-muted";
+        }
+
+        let visibilityPlayer2="visible";
+        if (this.props.player2===undefined){
+            visibilityPlayer2="invisible";
         }
 
         let activePlayer1;
@@ -38,7 +38,7 @@ class PlayersNames extends Component{
                     <span className="pr-1" >{this.props.player1}</span>
                     <img src={cross} height="20" width="20"/>
                 </div>
-                <div className={'d-flex align-items-center pb-1'+' '+activePlayer2}>
+                <div className={'d-flex align-items-center pb-1'+' '+activePlayer2+' '+visibilityPlayer2}>
                     <img className="pr-1" src={signPlayer2} height="20" />
                     <span>{this.props.player2}</span>
                 </div>

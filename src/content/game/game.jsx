@@ -163,7 +163,6 @@ class Game extends Component{
     }
 
     getData(){
-        console.log("getData")
         let games=Database.get("games");
         if (games===null){
             this.props.history.push("/");
@@ -186,6 +185,7 @@ class Game extends Component{
                     }
                     else if(
                         state.game===undefined||
+                        state.game.player2!=game.player2||
                         state.game.startTime!=game.startTime||
                         state.game.gamePhase!=game.gamePhase||
                         state.game.gameVieW!=game.gameVieW||
@@ -222,15 +222,14 @@ class Game extends Component{
             </div>
             );
     }
-    else
-        if (this.state.game!==undefined){
+    else if (this.state.game!==undefined){
 
             let textDisplay="";
             let signPlayer2=nought;
             let customColumn="customColumn";
             let buttonName="SURRENDER";
             let buttonHandle=this.surrenderClick;
-            if(this.state.game.winner!==0){
+            if(this.state.game.player2===undefined||this.state.game.winner!==0){
                 buttonName="BACK";
                 buttonHandle=this.menuClick;
             }
@@ -265,23 +264,32 @@ class Game extends Component{
                     clock=<Clock startTime={this.state.game.startTime} />
             }
 
+            
+            let gameCellHeight=40/this.state.game.gameField.length+"vmin";
+
             return(
                 <React.Fragment>
                     <div className={textDisplay}>
                         <PlayersNames userName={this.props.userName} player1={this.state.game.player1} player2={this.state.game.player2} strokeCounter={this.state.game.strokeCounter}/>
                     </div>
 
-                    <div className="d-flex flex-column flex-grow-1 borde borde-3 flex-shrink-1 my-4 overflow-auto">
+                    <div className="d-flex flex-column align-items-center flex-grow-0 flex-shrink-1 my-4 overflow-auto">
                         {this.state.game.gameField.map((item,indexRow)=>{
                             return (
-                                <div className="d-flex customRow" key={indexRow} >
+                                <div className="customRow" key={indexRow} >
                                     {item.map((item,indexColumn)=>{
                                         let sign=null;
                                         if (item==1) sign=cross;
                                         else if (item==0) sign=signPlayer2;
                                         else sign=null;
+                                        if (indexRow===this.state.game.gameField.length-1){
+                                            if (this.props.userName!==this.state.game.player1&&this.props.userName!==this.state.game.player2){
+                                                customColumn="customColumnLastRowMuted";
+                                            }
+                                            else customColumn="customColumnLastRow";
+                                        }
                                         return(
-                                            <div className={customColumn} onClick={()=>this.clickGameCell([indexRow,indexColumn])} key={indexColumn}>
+                                            <div className={customColumn} onClick={()=>this.clickGameCell([indexRow,indexColumn])} key={indexColumn} style={{flexBasis: gameCellHeight}}>
                                                 <img src={sign} className="gameCell img-fluid" alt=""/>
                                             </div>
                                         );
@@ -303,7 +311,6 @@ class Game extends Component{
             ); 
         } 
     else {
-        console.log("enter")
         return(
             <div>...Loading</div>
         );

@@ -17,7 +17,6 @@ class Menu extends Component{
     }
 
     handleClick(index){
-        // this.props.stateChanger({screenId: 2,selectGame: index});
         this.props.history.push("/game/"+index);
     }
 
@@ -48,7 +47,6 @@ class Menu extends Component{
             else{
               if (
                 state.games.length!=games.length||
-                state.games[i].gamePhase!=games[i].gamePhase||
                 state.games[i].winner!=games[i].winner||
                 state.games[i].player1!=games[i].player1||
                 state.games[i].player2!=games[i].player2
@@ -78,12 +76,10 @@ class Menu extends Component{
     }
 
     render(){
-      console.log("!!render this.state.games:",this.state.games)
         return(
             <React.Fragment>
                 <div>
                     <input className="pb-2 flex-shrink-0 border-bottom d-flex form-control-plaintext" style={{width:"70%"}} name="userNameInput" value={this.props.userName} onChange={this.userNameInputChange} maxLength="20" />
-                    {/* <span className="pb-2 flex-shrink-0 border-bottom d-flex" style={{width:"70%"}} >{this.props.userName}</span> */}
                 </div>
                 <div className="d-flex flex-wrap flex-grow-0 borde borde-3 flex-shrink-1 my-4 overflow-auto gameCardList">
                     {this.state.games.map((item,index)=>{

@@ -11,10 +11,9 @@ class App extends Component {
   constructor(props){
       super(props);
       this.state={
-          // screenId: 0,//!!Menu
           selectGame: 0,
-          standbyTime: (1*60*1000),//10sec//5 min
-          userName: "user Name",//!!Menu
+          standbyTime: (1*60*1000),//60sec//5 min
+          userName: "user Name",
       }
       this.stateChanger=this.stateChanger.bind(this);
   }
@@ -28,9 +27,8 @@ class App extends Component {
       <Router basename='/'>
         <Header />
         
-        <div className="flex-grow-1 d-flex flex-column px-fixed py-4 border border-primary overflow-auto">
+        <div className="flex-grow-1 d-flex flex-column px-fixed py-4 overflow-auto">
           <Switch>
-            {/* <Route path="/menu" component={Menu} /> */}
             <Route path="/menu" render={()=><Menu stateChanger={this.stateChanger} userName={this.state.userName} standbyTime={this.state.standbyTime}/>} />
             <Route path="/createGame" render={()=><CreateGame userName={this.state.userName} />} />
             <Route path="/game/:id" render={({match})=><Game match={match} userName={this.state.userName}/>} />
@@ -39,8 +37,6 @@ class App extends Component {
             
           </Switch>
         </div>
-
-        <TestComponent />
       </Router>
     );
   }

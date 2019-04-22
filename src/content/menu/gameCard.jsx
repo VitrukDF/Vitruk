@@ -3,9 +3,6 @@ import Clock from '../clock/clock';
 import tick from '../../svg/tick.svg';
 
 class GameCard extends Component{
-    constructor(props){
-        super(props);
-    }
 
     render(){
         let gamePhase=this.props.game.gamePhase;
@@ -13,12 +10,21 @@ class GameCard extends Component{
         let player2=this.props.game.player2;
         let winner=this.props.game.winner;
         let startTime=this.props.game.startTime;
+        let lastActivity=this.props.game.lastActivity;
+
         let bgColor;
         let textColor1;
         let textColor2;
         let visibility;
         let visibilityTick1;
         let visibilityTick2;
+
+        let clock=<Clock startTime={startTime} />;
+        if (winner!==0){
+            let date=new Date(lastActivity-startTime-(3*60*60*1000));
+            clock=date.toLocaleTimeString();
+        }
+
         if (player2===undefined){
             bgColor="bg-bgGameCardColor1";
             textColor1="text-white";
@@ -57,49 +63,6 @@ class GameCard extends Component{
                 visibilityTick2="invisible";
             }
         }
-        // switch (gamePhase){
-        //     case 0: //create game, waiting opponent
-        //     default:
-        //         bgColor="bg-bgGameCardColor1";
-        //         textColor1="text-white";
-        //         textColor2="text-white";
-        //         visibility="invisible";
-        //         visibilityTick1="invisible";
-        //         visibilityTick2="invisible";
-        //     break;
-        //     case 1://start game
-        //         bgColor="bg-bgGameCardColor2";
-        //         textColor1="text-white";
-        //         textColor2="text-white";
-        //         visibility="visible";
-        //         visibilityTick1="invisible";
-        //         visibilityTick2="invisible";
-        //     break;
-        //     case 2: //end game
-        //         bgColor="bg-bgGameCardColor3";
-        //         visibility="visible";
-        //         // if (player1Winner){
-        //         if (winner===1){
-        //             textColor1="text-winnerColor";
-        //             textColor2="text-black";
-        //             visibilityTick1="visible";
-        //             visibilityTick2="invisible";
-        //         }
-        //         else if (winner===2){
-        //         // else if (player2Winner){
-        //             textColor1="text-black";
-        //             textColor2="text-winnerColor";
-        //             visibilityTick1="invisible";
-        //             visibilityTick2="visible";
-        //         }
-        //         else{
-        //             textColor1="text-black";
-        //             textColor2="text-black";
-        //             visibilityTick1="invisible";
-        //             visibilityTick2="invisible";
-        //         }
-        //     break;
-        // }
 
         return(
             <div className={"gameCard p-1 "+bgColor}>
@@ -114,7 +77,7 @@ class GameCard extends Component{
                     </div>
                 </div>    
                 <div className="">
-                    <Clock startTime={startTime} />
+                    {clock}
                 </div>
             </div>
         );

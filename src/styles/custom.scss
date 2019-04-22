@@ -17,7 +17,6 @@ body{
 }
 
 
-
 .customClearBorder{
  width:100%;
  // outline: $gameCellBorder solid $bgContentColor;
@@ -27,16 +26,16 @@ body{
 }
 .customRow{
  display:flex;
- flex-shrink: 0;
+ flex-shrink: 1;
  justify-content: center;
- width:100%;
+ width: 100%;
 }
 .customRow:last-of-type{
  box-shadow: inset 3px -3px $bgContentColor;//under
 }
-.customColumn, .customColumnMuted{
+.customColumn, .customColumnMuted, .customColumnLastRow, .customColumnLastRowMuted{
  display:flex;
- flex-basis:20vh;
+ flex-basis: 20vmin;
  max-width: 200px;
  // min-width: 50px;
  position: relative;
@@ -55,7 +54,19 @@ body{
  border-bottom:$gameCellBorder solid $muted;
  border-right:$gameCellBorder solid $muted;
 }
-.customColumn::before, .customColumnMuted::before{
+.customColumnLastRow:last-of-type{
+  border-right: hidden;
+}
+.customColumnLastRow:not(:last-of-type){
+  border-right:$gameCellBorder solid $gameCellColor;
+}
+.customColumnLastRowMuted:last-of-type{
+  border-right: hidden;
+}
+.customColumnLastRowMuted:not(:last-of-type){
+  border-right:$gameCellBorder solid $muted;
+}
+.customColumn::before, .customColumnMuted::before, .customColumnLastRow::before, .customColumnLastRowMuted::before{
  content: "";
  display:block;
  padding-top:100%;

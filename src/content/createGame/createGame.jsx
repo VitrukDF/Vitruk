@@ -81,7 +81,6 @@ class CreateGame extends Component{
 
             let newGame={
                 // gameId: localStorage.length,
-                gamePhase: 0,//create
                 startTime: Date.now(),
                 lastActivity: Date.now(),
                 strokeCounter: 0,
@@ -91,7 +90,7 @@ class CreateGame extends Component{
                 cellNumber: row*column,
                 winner: 0,//1-player1,2-player2,3-surrender pl1,4-surrender pl2,5-draw game
                 player1: this.props.userName,
-                player2:undefined,
+                player2: undefined,
                 // "Player 2",
             }
             Database.push("games",newGame)
@@ -102,7 +101,7 @@ class CreateGame extends Component{
     render(){
         return(
             <div>
-            <form className="mx-auto p-4 mb-4 bg-white  shadow-sm rounded needs-validation" noValidate style={{maxWidth: "700px"}} action="#" method="post">
+            <form className="mx-auto p-4 mb-4 bg-white shadow-sm rounded needs-validation" noValidate style={{maxWidth: "700px"}} action="#" method="post">
                 <div className="mb-4 mx-auto flex-grow-1" style={{maxWidth: '300px'}}>
 
                     <div className="form-group row">
