@@ -264,8 +264,20 @@ class Game extends Component{
                     clock=<Clock startTime={this.state.game.startTime} />
             }
 
-            
-            let gameCellHeight=40/this.state.game.gameField.length+"vmin";
+            let gameFieldheight;
+            if(this.state.game.gameField.length<=8){
+                gameFieldheight=50;
+            }
+            else if(8<this.state.game.gameField.length&&this.state.game.gameField.length<=16){
+                gameFieldheight=100;
+            }
+            else if(16<this.state.game.gameField.length&&this.state.game.gameField.length<=50){
+                gameFieldheight=200;
+            }
+            else if(50<this.state.game.gameField.length&&this.state.game.gameField.length<=999){
+                gameFieldheight=1000;
+            }
+            let gameCellHeight=gameFieldheight/this.state.game.gameField.length+"vmin";
 
             return(
                 <React.Fragment>
